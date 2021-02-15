@@ -15,6 +15,7 @@ const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
 
+
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
@@ -38,7 +39,7 @@ const showImages = (images) => {
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
-    .then(data => showImages(data.data))
+    .then(data => showImages(data.hits))
     .catch(err => console.log(err))
 }
 
@@ -48,7 +49,7 @@ const selectItem = (event, img) => {
   element.classList.add('added');
  
   let item = sliders.indexOf(img);
-  if (item === 1) {
+  if (item === -1) {
     sliders.push(img);
   } else {
     alert('Hey, Already added !')
